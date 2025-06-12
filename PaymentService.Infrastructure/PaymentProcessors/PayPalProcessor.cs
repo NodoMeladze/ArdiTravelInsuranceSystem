@@ -19,7 +19,7 @@ namespace PaymentService.Infrastructure.PaymentProcessors
                 ValidatePayPalDetails(request);
 
                 // Simulate PayPal API call
-                await Task.Delay(200); // PayPal typically faster than card processing
+                await Task.Delay(200);
                 var result = await SimulatePaymentAsync(request);
 
                 if (result.IsSuccess)

@@ -73,7 +73,7 @@ namespace PolicyService.Application.Services
                 _logger.LogInformation("Expected premium: {ExpectedPremium}, Payment amount: {PaymentAmount}",
                     expectedPremium, payment.Amount);
 
-                var tolerance = 10.0m; // Allow 10 GEL difference
+                var tolerance = 1.0m;
 
                 if (payment.Amount < expectedPremium - tolerance)
                 {
@@ -142,14 +142,12 @@ namespace PolicyService.Application.Services
             _logger.LogInformation("Calculating quote for {CoverageType} coverage to {Destination}",
                 request.CoverageType, request.Destination);
 
-            // Validate basic request (reuse existing validator logic)
             if (request.TripStartDate >= request.TripEndDate)
                 throw new PolicyValidationException("Trip end date must be after start date");
 
             if (request.TripStartDate < DateTime.Today)
                 throw new PolicyValidationException("Trip start date cannot be in the past");
 
-            // Calculate premium using existing calculator
             var premium = _premiumCalculator.Calculate(
                 request.CoverageType,
                 request.TripStartDate,

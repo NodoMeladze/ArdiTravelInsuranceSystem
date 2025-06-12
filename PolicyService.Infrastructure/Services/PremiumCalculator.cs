@@ -43,7 +43,6 @@ namespace PolicyService.Infrastructure.Services
             if (tripDuration <= 0)
                 throw new ArgumentException("Trip end date must be after start date");
 
-            // Use daily rates instead of base premium
             decimal dailyRate = coverageType switch
             {
                 CoverageType.Basic => 5.0m,
@@ -70,7 +69,6 @@ namespace PolicyService.Infrastructure.Services
 
         public decimal GetDestinationMultiplier(string destination)
         {
-            // Check for exact match first
             if (_destinationMultipliers.TryGetValue(destination, out var exactMultiplier))
             {
                 _logger.LogDebug("Exact destination multiplier for {Destination}: {Multiplier}", destination, exactMultiplier);

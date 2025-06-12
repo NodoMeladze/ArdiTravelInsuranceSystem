@@ -6,7 +6,7 @@ namespace PaymentService.Domain.Entities
     {
         public Guid Id { get; set; }
         public decimal Amount { get; set; }
-        public string Currency { get; set; } = "USD";
+        public string Currency { get; set; } = "GEL";
         public PaymentStatus Status { get; set; }
         public PaymentMethod Method { get; set; }
         public string? TransactionId { get; set; }

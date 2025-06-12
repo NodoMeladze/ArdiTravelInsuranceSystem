@@ -48,12 +48,12 @@ namespace PolicyService.API.Controllers
                 if (existingPolicy != null)
                 {
                     _logger.LogInformation("Policy already exists for payment {PaymentId}, returning existing policy", request.PaymentId);
-                    return Ok(existingPolicy); // 200 instead of 201
+                    return Ok(existingPolicy);
                 }
 
                 var policy = await _policyService.CreatePolicyAsync(request);
                 _logger.LogInformation("Policy created successfully. PolicyId: {PolicyId}", policy.Id);
-                return CreatedAtAction(nameof(GetPolicy), new { id = policy.Id }, policy); // 201 for new
+                return CreatedAtAction(nameof(GetPolicy), new { id = policy.Id }, policy);
             }
             catch (PolicyValidationException ex)
             {
