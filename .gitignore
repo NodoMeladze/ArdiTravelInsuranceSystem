@@ -1,0 +1,180 @@
+# .gitignore for Travel Insurance System (.NET Core Microservices)
+
+###################
+# Visual Studio / VS Code
+###################
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+###################
+# Build Outputs
+###################
+bin/
+obj/
+out/
+build/
+dist/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+###################
+# .NET Core / ASP.NET Core
+###################
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/Properties/launchSettings.json
+*.runtimeconfig.json
+
+###################
+# Package Management
+###################
+[Pp]ackages/
+# NuGet v3's project.json files produces more ignorable files
+*.nuget.props
+*.nuget.targets
+# NuGet Symbol Packages
+*.snupkg
+
+###################
+# Database Files
+###################
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+LocalDatabase.db
+payments.db
+
+###################
+# Logs and Debug Files
+###################
+*.log
+*.tmp
+*.temp
+logs/
+log/
+*.pdb
+
+###################
+# Test Results
+###################
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+BenchmarkDotNet.Artifacts/
+
+###################
+# OS Generated Files
+###################
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+###################
+# IDE Configuration
+###################
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+###################
+# Temporary Files
+###################
+*.tmp
+*.bak
+*.swp
+*.swo
+*~.nib
+local.properties
+
+###################
+# Environment & Configuration
+###################
+# Don't ignore appsettings.json for demo purposes, but in production you might want:
+# appsettings.Production.json
+# appsettings.Staging.json
+.env
+.env.local
+.env.production
+.env.staging
+secrets.json
+
+###################
+# Application Specific
+###################
+# Payment Service Database
+PaymentService/payments.db*
+
+# Policy Service In-Memory Database (if persisted)
+PolicyService/policy.db*
+
+# SSL Certificates (if any)
+*.pfx
+*.p12
+*.key
+*.crt
+*.pem
+
+###################
+# Development Tools
+###################
+# Entity Framework Migrations (keep these, but ignore generated files)
+# Migrations/
+*.designer.cs
+
+# Swagger / OpenAPI generated files
+wwwroot/api/
+
+###################
+# Performance Profiling
+###################
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+###################
+# Azure / Cloud
+###################
+# Azure Functions
+local.settings.json
+
+# AWS
+aws-exports.js
