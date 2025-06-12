@@ -69,7 +69,7 @@ namespace PaymentService.Tests.Services
                 Amount = payment.Amount,
                 Currency = payment.Currency,
                 Status = PaymentStatus.Completed,
-                TransactionId = "TXN123"
+                IdempotencyKey = "TXN123"
             };
 
             var processor = new Mock<IPaymentProcessor>();
@@ -91,7 +91,7 @@ namespace PaymentService.Tests.Services
             // Assert
             result.Should().NotBeNull();
             result.Status.Should().Be(PaymentStatus.Completed);
-            result.TransactionId.Should().Be("TXN123");
+            result.IdempotencyKey.Should().Be("TXN123");
         }
 
         [Fact]

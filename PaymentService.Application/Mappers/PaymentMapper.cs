@@ -16,7 +16,7 @@ namespace PaymentService.Application.Mappers
                 Currency = payment.Currency,
                 Status = payment.Status,
                 Method = payment.Method,
-                TransactionId = payment.TransactionId,
+                IdempotencyKey = payment.IdempotencyKey,
                 FailureReason = payment.FailureReason,
                 CreatedAt = payment.CreatedAt,
                 ProcessedAt = payment.ProcessedAt

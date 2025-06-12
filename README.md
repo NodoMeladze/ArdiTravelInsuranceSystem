@@ -2,6 +2,9 @@
 
 აღწერა:
 
+რადგან სატესტო პროექტია ორივე მიკროსერვისი მოვაქციე ერთ სოლუშენში.
+ასევე ცოტათი ოვერინჟინერია გამომივიდა. (შევეცადე ლოგიკები რეალური პროექტისთვის მიმემსგავსებინა.)
+
 მოგზაურობის დაზღვევის პოლისებისა და გადახდების მართვის სისტემა,
 რომელიც აჩვენებს მიკროსერვისების არქიტექტურას სერვისებს შორის კომუნიკაციით, ვალიდაციით და ბიზნეს ლოგიკის გამიჯვნით.
 
@@ -43,11 +46,12 @@ jsonPOST http://localhost:5001/api/policies/quote
 Process Payment:
 jsonPOST http://localhost:5000/api/payments
 {
-  "amount": 130.00,
+  "amount": 130,
   "currency": "GEL",
   "paymentMethod": 1,
-  "cardNumber": "4111111111111111",
-  "cardHolderName": "John Doe"
+  "idempotencyKey": "TEST-IdempotencyKey-Vol-1",
+  "cardNumber": "1234567890123456",
+  "cardHolderName": "Besarion Latsabidze"
 }
 
 Create Policy:
@@ -67,7 +71,7 @@ jsonPOST http://localhost:5001/api/policies
 პირველ რიგში Get Quote მეთოდით ხდება პოლისის ფასი გარკვევა, შემდეგ Process Payment-ით ხდება გადახდა და ბოლოს, 
 Create Policy-ით ხდება პოლისის დამატება. 
 
-Technology Stack
+Tech Stack
 
 .NET 8, ASP.NET Core Web API
 Entity Framework Core (In-Memory) // გამოყენებულია პოლისის მიკროსერვისში
