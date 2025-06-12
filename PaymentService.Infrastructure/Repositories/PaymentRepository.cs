@@ -113,7 +113,6 @@ namespace PaymentService.Infrastructure.Repositories
             return payment;
         }
 
-
         private class PaymentDto
         {
             public string Id { get; set; } = string.Empty;

@@ -1,10 +1,9 @@
-﻿using PolicyService.Application.Interfaces;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using PolicyService.Application.Interfaces;
 using PolicyService.Domain.DTOs;
 using PolicyService.Domain.Exceptions;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
 using System.Text.Json;
-using System.Text;
 
 namespace PolicyService.Infrastructure.ExternalServices
 {
@@ -32,77 +31,6 @@ namespace PolicyService.Infrastructure.ExternalServices
             var timeout = configuration.GetValue("PaymentService:TimeoutSeconds", 30);
             _httpClient.Timeout = TimeSpan.FromSeconds(timeout);
         }
-
-        //public async Task<PaymentResponseDto> ProcessPaymentAsync(PaymentRequestDto request)
-        //{
-        //    _logger.LogInformation("Processing payment request for amount: {Amount} {Currency}",
-        //        request.Amount, request.Currency);
-
-        //    try
-        //    {
-        //        // Convert PolicyService PaymentRequestDto to PaymentService ProcessPaymentDto
-        //        var paymentRequest = new
-        //        {
-        //            request.Amount,
-        //            request.Currency,
-        //            PaymentMethod = MapPaymentMethod(request.PaymentMethod),
-        //            request.IdempotencyKey,
-        //            request.CardNumber,
-        //            request.CardHolderName,
-        //            request.PayPalEmail
-        //        };
-
-        //        var json = JsonSerializer.Serialize(paymentRequest/*, _jsonOptions*/);
-        //        var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-        //        _logger.LogDebug("Sending payment request to Payment Service: {Request}", json);
-
-        //        var response = await _httpClient.PostAsync("/api/payments", content);
-
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            var responseJson = await response.Content.ReadAsStringAsync();
-
-        //            var paymentDto = JsonSerializer.Deserialize<PaymentServiceResponse>(responseJson, _jsonOptions) ?? 
-        //                throw new PaymentFailedException("Invalid response from payment service");
-
-        //            var result = new PaymentResponseDto
-        //            {
-        //                Id = paymentDto.Id,
-        //                Amount = paymentDto.Amount,
-        //                Currency = paymentDto.Currency,
-        //                Status = paymentDto.Status.ToString(),
-        //                TransactionId = paymentDto.TransactionId,
-        //                FailureReason = paymentDto.FailureReason,
-        //                CreatedAt = paymentDto.CreatedAt,
-        //                ProcessedAt = paymentDto.ProcessedAt
-        //            };
-
-        //            _logger.LogInformation("Payment processed successfully. PaymentId: {PaymentId}, Status: {Status}",
-        //                result.Id, result.Status);
-
-        //            return result;
-        //        }
-        //        else
-        //        {
-        //            var errorContent = await response.Content.ReadAsStringAsync();
-        //            _logger.LogError("Payment service returned error. Status: {StatusCode}, Content: {Content}",
-        //                response.StatusCode, errorContent);
-
-        //            throw new PaymentFailedException($"Payment service error: {response.StatusCode}");
-        //        }
-        //    }
-        //    catch (HttpRequestException ex)
-        //    {
-        //        _logger.LogError(ex, "HTTP request failed when calling payment service");
-        //        throw new PaymentFailedException($"Payment service communication error: {ex.Message}");
-        //    }
-        //    catch (TaskCanceledException ex)
-        //    {
-        //        _logger.LogError(ex, "Payment service request timed out");
-        //        throw new PaymentFailedException("Payment service request timed out");
-        //    }
-        //}
 
         public async Task<PaymentResponseDto?> GetPaymentStatusAsync(Guid paymentId)
         {
