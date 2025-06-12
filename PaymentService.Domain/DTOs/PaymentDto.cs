@@ -9,7 +9,7 @@ namespace PaymentService.Domain.DTOs
         public string Currency { get; set; } = string.Empty;
         public PaymentStatus Status { get; set; }
         public PaymentMethod Method { get; set; }
-        public string? TransactionId { get; set; }
+        public string? IdempotencyKey { get; set; }
         public string? FailureReason { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? ProcessedAt { get; set; }

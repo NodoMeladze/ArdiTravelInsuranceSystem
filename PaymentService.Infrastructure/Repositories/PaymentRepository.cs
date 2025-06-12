@@ -98,6 +98,7 @@ namespace PaymentService.Infrastructure.Repositories
                 Status = (int)payment.Status,
                 Method = (int)payment.Method,
                 payment.TransactionId,
+                payment.IdempotencyKey,
                 payment.FailureReason,
                 payment.CardNumber,
                 payment.CardHolderName,
